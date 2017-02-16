@@ -1,4 +1,4 @@
-from math import pi,cos,sin
+from math import pi,cos,sin,radians
 from collections import OrderedDict
 import sys
 
@@ -48,18 +48,18 @@ for i in stats:
                 except:
                     next
                 
-                if va+2>180:
+                if va+0.4>180:
                     va += 90
                     vang = ((va)*pi)/180
-                elif va+2<180:
+                    ga -=180
+                    if ga<0:
+                        ga+=360
+                    
+                elif va+0.4<180:
                     va -= 90
                     vang = (va*pi)/180
-                      
-                if ga>180:
-                    ga -=180
-                    gang = (ga*pi)/180
 
-                gang = (ga*pi)/180
+                gang = radians(ga)
                 di = float('{}.{}'.format(i[dist][:-4],i[dist][-4:]))
                 d = di*cos(vang)
                 try:
