@@ -48,14 +48,14 @@ for i in stats:
                 except:
                     next
                 
-                if va+0.4>180:
-                    va += 90
+                if va>180:
+                    va = 360 - va - 90
                     vang = ((va)*pi)/180
                     ga -=180
                     if ga<0:
                         ga+=360
                     
-                elif va+0.4<180:
+                elif va<180:
                     va -= 90
                     vang = (va*pi)/180
 
@@ -70,9 +70,8 @@ for i in stats:
                     coords[num][0].append(gang)
                     coords[num][1].append(d)
     except IndexError:               
-        for i in data[i:]:  
-            coords = OrderedDict()            
-            num = i[nums]      
+        for i in data[i:]:
+            num = i[nums]
             if len(num.lstrip('0'))==6:
                 pn = num
             if len(num.lstrip('0'))<6:
@@ -85,17 +84,18 @@ for i in stats:
                 except:
                     next
                 
-                if va+2>180:
-                    va += 90
+                if va>180:
+                    va = 360 - va - 90
                     vang = ((va)*pi)/180
-                if va+2<180:
+                    ga -=180
+                    if ga<0:
+                        ga+=360
+                    
+                elif va<180:
                     va -= 90
                     vang = (va*pi)/180
-                      
-                if ga>180:
-                    ga -=180
-                    gang = (ga*pi)/180
-                gang = (ga*pi)/180
+
+                gang = radians(ga)
                 di = float('{}.{}'.format(i[dist][:-4],i[dist][-4:]))
                 d = di*cos(vang)
                 try:
