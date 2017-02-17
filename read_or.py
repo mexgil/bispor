@@ -38,7 +38,7 @@ for i in stats:
             num = i[nums]
             if len(i)<130:
                 pn = num
-            if len(num.lstrip('0'))<6:
+            if len(i)>130:
                 try:
                     va = float('{}.{}'.format(i[v_ang][:-5],i[v_ang][-5:]))*0.9
                 except:
@@ -57,6 +57,8 @@ for i in stats:
                     
                 elif va<180:
                     va -= 90
+                    if ga>359:
+                        ga -= 360
                     vang = (va*pi)/180
 
                 gang = radians(ga)
