@@ -8,7 +8,7 @@ def mean(numbers):
 
 
 
-path = r'data\origin2\ora.txt'
+path = r'data\origint\ora.txt'
 
 with open(path,'r') as f:
     data = f.read().split('\n')
@@ -128,7 +128,7 @@ for i in stats:
         coords[k] = (x,y)
 
         
-    with open(r'data\origin2\ex\{}.csv'.format(str(n).zfill(7)),'w') as f:
+    with open(r'data\origint\ex\{}_{}.csv'.format(str(n).zfill(7),pn),'w') as f:
         for k in coords.keys():
             f.writelines('{};{};{}\n'.format(str(k.lstrip('0')),str(coords[k][0]),str(coords[k][1])))
 
