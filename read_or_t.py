@@ -112,10 +112,22 @@ for i in stats:
 
     #for k in coords.keys():
     #    print('{} --> {}'.format(k, coords[k]))
-
     minr = radians(1)
     maxr = radians(359)
-    rad360 = radians(360)                
+    rad360 = radians(360)
+
+
+    #rename targets with distance less than 20 meters from observation point
+
+    
+    sm_ind=0
+    for k in coords.keys():
+        if len(k.lstrip('0'))<4 and mean(coords[k][1])<20:
+            coords[k+'_smpl_{}'.format(sm_ind)]=coords[k]
+            del coords[k]
+            sm_ind+=1
+
+
     for k in coords.keys():
         if any(i<minr for i in coords[k][0]) and any(i>maxr for i in coords[k][0]):
             for i in coords[k][0]:
@@ -126,6 +138,7 @@ for i in stats:
         x = d*cos(g)
         y = d*sin(g)
         coords[k] = (x,y)
+
 
         
     with open(r'data\origint\ex\{}_{}.csv'.format(str(n).zfill(7),pn),'w') as f:
